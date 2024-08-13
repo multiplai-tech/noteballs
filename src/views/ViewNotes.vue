@@ -18,6 +18,7 @@
 	<Note
 		v-for="note in notes"
 		:key="note.id" 
+		:note="note"
 	/>
 </div>
 </template>
@@ -28,7 +29,7 @@ import { ref } from 'vue'
 import { v4 as uuidv4 } from 'uuid';
 
 // COMPONENTS
-import Note from '@/components/Notes/note.vue'
+import Note from '@/components/Notes/Note.vue'
 
 const newNote = ref('')
 const newNoteRef = ref(null)

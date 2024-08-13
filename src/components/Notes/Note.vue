@@ -1,10 +1,11 @@
 <template>
 	<div
+		:key="props.note.id"
 	 	class="card"
 	>
 		<div class="card-content">
 			<div class="content">
-				<!-- {{ note.content }} -->
+				{{ props.note.content }}
 			</div>
 		</div>
 		<footer class="card-footer">
@@ -13,3 +14,12 @@
 		</footer>
 	</div>
 </template>
+
+<script setup>
+const props = defineProps({
+	note: {
+		type: Object,
+		required: true
+	}
+})
+</script>
