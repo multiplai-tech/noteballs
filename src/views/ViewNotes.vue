@@ -15,21 +15,10 @@
 		</div>
 	</div>
 
-	<div
+	<Note
 		v-for="note in notes"
-		:key="note.id"
-	 	class="card"
-	>
-		<div class="card-content">
-			<div class="content">
-				{{ note.content }}
-			</div>
-		</div>
-		<footer class="card-footer">
-			<a href="#" class="card-footer-item">Edit</a>
-			<a href="#" class="card-footer-item">Delete</a>
-		</footer>
-	</div>
+		:key="note.id" 
+	/>
 </div>
 </template>
 
@@ -37,6 +26,9 @@
 // IMPORTS
 import { ref } from 'vue'
 import { v4 as uuidv4 } from 'uuid';
+
+// COMPONENTS
+import Note from '@/components/Notes/note.vue'
 
 const newNote = ref('')
 const newNoteRef = ref(null)
