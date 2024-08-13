@@ -19,6 +19,7 @@
 		v-for="note in notes"
 		:key="note.id" 
 		:note="note"
+		@deleteNote="handleDeleteNote"
 	/>
 </div>
 </template>
@@ -36,11 +37,11 @@ const newNoteRef = ref(null)
 
 const notes = ref([
 	{
-		id: 1,
+		id: uuidv4(),
 		content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae tempore reiciendis sit deserunt nostrum reprehenderit est. Cumque porro dolores, quidem unde ratione eligendi nesciunt! Iusto veritatis consectetur quis modi magnam!',
 	},
 	{
-		id: 2,
+		id: uuidv4(),
 		content: 'This is a shorter note! Wooo!'
 	},
 ])
@@ -55,5 +56,11 @@ const addNote = () => {
 	newNote.value = ''
 
 	newNoteRef.value.focus()
+}
+
+const handleDeleteNote = id => {
+	notes.value = notes.value.filter(note => {
+		return note.id !== id
+	})
 }
 </script>
