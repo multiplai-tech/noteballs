@@ -1,18 +1,22 @@
 <template>
 	<div
-		:key="props.note.id"
+		:key="note.id"
 	 	class="card"
 	>
 		<div class="card-content">
 			<div class="content">
-				{{ props.note.content }}
+				{{ note.content }}
 				<div class="has-text-right has-text-grey-light mt-2">
 					<small>{{ characterLength }}</small>
 				</div>
 			</div>
 		</div>
 		<footer class="card-footer">
-			<a href="#" class="card-footer-item">Edit</a>
+			<RouterLink
+				:to="`/editNote/${ note.id }`"
+				href="#"
+				class="card-footer-item"
+			>Edit</RouterLink>
 			<a
 				@click.prevent="handleDeleteNote"
 			  	href="#"
