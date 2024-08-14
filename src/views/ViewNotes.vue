@@ -1,6 +1,5 @@
 <template>
 <div class="notes">
-
 	<div class="card has-background-success-dark p-4 mb-5">
 		<div class="field">
 			<div class="control">
@@ -16,10 +15,10 @@
 	</div>
 
 	<Note
-		v-for="note in notes"
+		v-for="note in storeNotes.notes"
 		:key="note.id" 
 		:note="note"
-		@deleteNote="handleDeleteNote"
+		@deleteNote="storeNotes.deleteNote(note.id)"
 	/>
 </div>
 </template>
@@ -27,40 +26,19 @@
 <script setup>
 // IMPORTS
 import { ref } from 'vue'
-import { v4 as uuidv4 } from 'uuid';
+import { useStoreNotes } from '@/store/storeNotes';
 
 // COMPONENTS
 import Note from '@/components/Notes/Note.vue'
 
+const storeNotes = useStoreNotes()
+
 const newNote = ref('')
 const newNoteRef = ref(null)
 
-const notes = ref([
-	{
-		id: uuidv4(),
-		content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae tempore reiciendis sit deserunt nostrum reprehenderit est. Cumque porro dolores, quidem unde ratione eligendi nesciunt! Iusto veritatis consectetur quis modi magnam!',
-	},
-	{
-		id: uuidv4(),
-		content: 'This is a shorter note! Wooo!'
-	},
-])
-
 const addNote = () => {
-	let note = {
-		id: uuidv4(),
-		content: newNote.value
-	}
-
-	notes.value.unshift(note)
+	storeNotes.addNote(newNote.value)
 	newNote.value = ''
-
 	newNoteRef.value.focus()
-}
-
-const handleDeleteNote = id => {
-	notes.value = notes.value.filter(note => {
-		return note.id !== id
-	})
 }
 </script>
